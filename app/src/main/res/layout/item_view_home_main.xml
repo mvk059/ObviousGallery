@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Manpreet Kunnath on 29/1/2020 10:54
+  ~ Copyright (c) 2020 . All rights reserved.
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--    The item view in the recycler view -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/rvItemHomeMain"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_200"
+            android:layout_margin="@dimen/dp_10"
+            android:contentDescription="@string/home_cont_desc_rv_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:src="@drawable/hubble"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

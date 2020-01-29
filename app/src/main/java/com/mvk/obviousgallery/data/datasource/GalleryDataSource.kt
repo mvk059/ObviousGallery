@@ -27,7 +27,7 @@ class GalleryDataSource(var context: Context) {
     fun getImageData(): Array<Image>? {
         var json: String? = ""
         try {
-            val inputStream = context.assets.open("data1.json")
+            val inputStream = context.assets.open("data.json")
             json = inputStream.readInput()
         } catch (e: IOException) {
             Toaster.show(context, context.getString(R.string.error_text_file_not_found))

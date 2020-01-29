@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Obvious Gallery</string>
     <string name="error_text_file_not_found">File not found</string>
+    <string name="home_cont_desc_rv_icon">Icon in main gallery screen</string>
 </resources>
