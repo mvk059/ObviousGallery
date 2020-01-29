@@ -6,14 +6,14 @@
     <data>
         <variable
             name="mainVM"
-            type="com.mvk.obviousgallery.viewmodel.MainViewModel" />
+            type="com.mvk.obviousgallery.ui.main.viewmodel.MainViewModel" />
     </data>
 
     <!--    A recycler view with a loader -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.MainActivity">
+        tools:context=".ui.main.MainActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMain"

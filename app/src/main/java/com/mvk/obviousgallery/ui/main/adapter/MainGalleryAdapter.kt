@@ -3,9 +3,8 @@
  * Copyright (c) 2020 . All rights reserved.
  */
 
-package com.mvk.obviousgallery.ui.adapter
+package com.mvk.obviousgallery.ui.main.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -17,28 +16,26 @@ import com.mvk.obviousgallery.utils.common.ImageClickListener
  * Recycler view adapter for the main screen listing.
  * A bare bones implementation of the recycler view adapter. Will change later
  *
- * @param context Context of the activity it is called from
  * @param imageList List of images to display in the activity
  * @param imageClickListener Listener to handle clicks of the images
  */
 class MainGalleryAdapter(
-    var context: Context,
     var imageList: Array<Image>?,
     var imageClickListener: ImageClickListener
-) : RecyclerView.Adapter<MainGalleryViewHolder>() {
+) : RecyclerView.Adapter<MainGalleryItemViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainGalleryViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainGalleryItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemViewHomeMainBinding.inflate(inflater, parent, false)
-        return MainGalleryViewHolder(binding)
+        return MainGalleryItemViewHolder(binding)
     }
 
     override fun getItemCount(): Int = imageList?.size ?: 0
 
-    override fun onBindViewHolder(holder: MainGalleryViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MainGalleryItemViewHolder, position: Int) {
         imageList?.let {
             if (it.isNotEmpty()) {
-                holder.bindItems(context, it[position])
+                holder.bindItems(it, position, imageClickListener)
             }
         }
     }

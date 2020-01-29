@@ -3,7 +3,7 @@
  * Copyright (c) 2020 . All rights reserved.
  */
 
-package com.mvk.obviousgallery.viewmodel
+package com.mvk.obviousgallery.ui.main.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

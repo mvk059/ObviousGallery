@@ -5,10 +5,12 @@
 
 package com.mvk.obviousgallery.utils.common
 
+import com.mvk.obviousgallery.data.model.Image
+
 /**
  * Interface to handle clicks of images
  */
 interface ImageClickListener {
 
-    fun onClick()
+    fun onClick(images: Array<Image>?, position: Int)
 }

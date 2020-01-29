@@ -1,22 +1,22 @@
 /*
- * Created by Manpreet Kunnath on 28/1/2020 17:24
+ * Created by Manpreet Kunnath on 29/1/2020 15:26
  * Copyright (c) 2020 . All rights reserved.
  */
 
-package com.mvk.obviousgallery.ui
+package com.mvk.obviousgallery.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.mvk.obviousgallery.R
 import com.mvk.obviousgallery.data.datasource.GalleryDataSource
+import com.mvk.obviousgallery.data.model.Image
 import com.mvk.obviousgallery.databinding.ActivityMainBinding
-import com.mvk.obviousgallery.ui.adapter.MainGalleryAdapter
+import com.mvk.obviousgallery.ui.main.adapter.MainGalleryAdapter
 import com.mvk.obviousgallery.utils.common.ImageClickListener
-import com.mvk.obviousgallery.viewmodel.MainViewModel
+import com.mvk.obviousgallery.ui.main.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity(), ImageClickListener {
 
@@ -32,14 +32,15 @@ class MainActivity : AppCompatActivity(), ImageClickListener {
 
         val dataSource = GalleryDataSource(this)
         val array = dataSource.getImageData()
-        val galleryAdapter = MainGalleryAdapter(this, array, this)
+        val galleryAdapter = MainGalleryAdapter(array, this)
         binding.rvMain.apply {
             layoutManager = GridLayoutManager(context, 3)
             adapter = galleryAdapter
         }
     }
 
-    override fun onClick() {
+    override fun onClick(images: Array<Image>?, position: Int) {
 
     }
+
 }
