@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Obvious Gallery</string>
+    <string name="error_text_file_not_found">File not found</string>
 </resources>
