@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mvk.obviousgallery.R
 import com.mvk.obviousgallery.data.model.Image
+import com.mvk.obviousgallery.data.model.ImageData
 import com.mvk.obviousgallery.databinding.ItemViewHomeMainBinding
 import com.mvk.obviousgallery.utils.common.ImageClickListener
 
@@ -30,13 +31,15 @@ class MainGalleryItemViewHolder(var binding: ItemViewHomeMainBinding) :
     ) {
 
         Glide.with(itemView)
-            .load(images[position])
+            .load(images[position].url)
             .centerCrop()
             .placeholder(R.drawable.placeholder)
-            .error(R.drawable.placeholder)
-            .fallback(R.drawable.placeholder)
+            .error(R.drawable.ic_launcher_background)
+            .fallback(R.drawable.ic_launcher_foreground)
             .into(binding.rvItemHomeMain)
 
-        imageClickListener.onClick(images, position)
+        binding.rvItemHomeMain.setOnClickListener {
+            imageClickListener.onClick(ImageData(images, position))
+        }
     }
 }

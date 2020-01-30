@@ -8,15 +8,17 @@ package com.mvk.obviousgallery.ui.main
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mvk.obviousgallery.R
-import com.mvk.obviousgallery.data.datasource.GalleryDataSource
-import com.mvk.obviousgallery.data.model.Image
+import com.mvk.obviousgallery.data.model.ImageData
 import com.mvk.obviousgallery.databinding.ActivityMainBinding
+import com.mvk.obviousgallery.ui.detail.DetailViewFragment
 import com.mvk.obviousgallery.ui.main.adapter.MainGalleryAdapter
-import com.mvk.obviousgallery.utils.common.ImageClickListener
 import com.mvk.obviousgallery.ui.main.viewmodel.MainViewModel
+import com.mvk.obviousgallery.utils.common.ImageClickListener
+
 
 class MainActivity : AppCompatActivity(), ImageClickListener {
 
@@ -30,17 +32,31 @@ class MainActivity : AppCompatActivity(), ImageClickListener {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         binding.mainVM = viewModel
 
-        val dataSource = GalleryDataSource(this)
-        val array = dataSource.getImageData()
+        setAdapter()
+
+        viewModel.passDataLiveData.observe(this, Observer {  })
+    }
+
+    override fun onClick(imageData: ImageData) {
+        supportFragmentManager
+            .beginTransaction()
+            .add(
+                android.R.id.content,
+                DetailViewFragment.newInstance(),
+                DetailViewFragment::class.java.name
+            )
+            .addToBackStack(MainActivity::class.java.name)
+            .commit()
+        viewModel.passDataToFragment(imageData)
+    }
+
+    private fun setAdapter() {
+        val array = viewModel.getData()
         val galleryAdapter = MainGalleryAdapter(array, this)
         binding.rvMain.apply {
             layoutManager = GridLayoutManager(context, 3)
             adapter = galleryAdapter
         }
-    }
-
-    override fun onClick(images: Array<Image>?, position: Int) {
-
     }
 
 }
