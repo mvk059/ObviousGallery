@@ -13,7 +13,11 @@ import com.mvk.obviousgallery.data.model.ImageData
 import com.mvk.obviousgallery.databinding.ItemViewHomeMainBinding
 import com.mvk.obviousgallery.utils.common.ImageClickListener
 
-// A bare bones implementation of the recycler view holder. Will change later
+/**
+ * View holder to display the images
+ *
+ * @param binding Binding with the layout file (item_view_home_main.xml) to access it's elements
+ */
 class MainGalleryItemViewHolder(var binding: ItemViewHomeMainBinding) :
     RecyclerView.ViewHolder(binding.root) {
 

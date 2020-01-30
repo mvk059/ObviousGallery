@@ -14,7 +14,6 @@ import com.mvk.obviousgallery.utils.common.ImageClickListener
 
 /**
  * Recycler view adapter for the main screen listing.
- * A bare bones implementation of the recycler view adapter. Will change later
  *
  * @param imageList List of images to display in the activity
  * @param imageClickListener Listener to handle clicks of the images

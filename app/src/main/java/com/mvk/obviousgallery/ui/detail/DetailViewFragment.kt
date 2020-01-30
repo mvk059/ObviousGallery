@@ -19,14 +19,23 @@ import com.mvk.obviousgallery.databinding.DetailViewMainBinding
 import com.mvk.obviousgallery.ui.detail.adapter.DetailViewAdapter
 import com.mvk.obviousgallery.ui.main.viewmodel.MainViewModel
 
-
+/**
+ * Detail fragment to display all of the information for the selection image
+ */
 class DetailViewFragment : Fragment() {
 
     companion object {
         fun newInstance() = DetailViewFragment()
     }
 
+    /**
+     * Binding with the layout file (detail_view_main.xml) to access it's elements
+     */
     private lateinit var binding: DetailViewMainBinding
+    /**
+     * View model for the fragment
+     */
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,13 +44,40 @@ class DetailViewFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.detail_view_main, container, false)
         val view: View = binding.root
+        initViewModel()
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        initObservers()
     }
 
+    /**
+     * Initialize the view model
+     */
+    private fun initViewModel() {
+        activity?.let {
+            viewModel = ViewModelProvider(it).get(MainViewModel::class.java)
+            binding.detailVM = viewModel
+        }
+    }
 
+    /**
+     * Initializes the required observers
+     */
+    private fun initObservers() {
+        viewModel.passDataLiveData.observe(viewLifecycleOwner, Observer {
+            initAdapter(viewModel.imageData)
+        })
+    }
+
+    /**
+     * Setting up the adapter to list the images
+     * Navigating to the position of the selected image
+     */
+    private fun initAdapter(it: ImageData) {
+        binding.detailViewPager.adapter = DetailViewAdapter(it)
+        binding.detailViewPager.currentItem = it.position
+    }
 }
