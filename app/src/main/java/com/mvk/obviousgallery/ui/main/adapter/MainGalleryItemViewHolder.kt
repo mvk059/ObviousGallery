@@ -37,9 +37,9 @@ class MainGalleryItemViewHolder(var binding: ItemViewHomeMainBinding) :
         Glide.with(itemView)
             .load(images[position].url)
             .centerCrop()
-            .placeholder(R.drawable.placeholder)
-            .error(R.drawable.ic_launcher_background)
-            .fallback(R.drawable.ic_launcher_foreground)
+            .placeholder(R.drawable.ic_placeholder)
+            .error(R.drawable.ic_error)
+            .fallback(R.drawable.ic_error)
             .into(binding.rvItemHomeMain)
 
         binding.rvItemHomeMain.setOnClickListener {

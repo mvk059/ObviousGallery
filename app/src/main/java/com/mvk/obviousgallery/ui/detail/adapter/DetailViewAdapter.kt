@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mvk.obviousgallery.data.model.ImageData
-import com.mvk.obviousgallery.databinding.DetailViewItemBinding
+import com.mvk.obviousgallery.databinding.ItemViewDetailBinding
 
 /**
  * Recycler view adapter for the main screen listing.
@@ -22,7 +22,7 @@ class DetailViewAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = DetailViewItemBinding.inflate(inflater, parent, false)
+        val binding = ItemViewDetailBinding.inflate(inflater, parent, false)
         return DetailViewHolder(binding)
     }
 
