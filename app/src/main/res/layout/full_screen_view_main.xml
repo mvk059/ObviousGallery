@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Manpreet Kunnath on 31/1/2020 12:39
+  ~ Copyright (c) 2020 . All rights reserved.
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="fullScreenVM"
+            type="com.mvk.obviousgallery.ui.main.viewmodel.MainViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/fullIV"
+            android:background="@color/black"
+            tools:src="@drawable/hubble"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/full_screen_cont_desc_icon"/>
+
+    </LinearLayout>
+</layout>

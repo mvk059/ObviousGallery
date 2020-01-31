@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), ImageClickListener {
             container = android.R.id.content,
             addToBackStack = MainActivity::class.java.name
         )
-        viewModel.passDataToFragment(imageData = imageData)
+        viewModel.passDataToDetailFragment(imageData = imageData)
     }
 
     /**

@@ -4,8 +4,7 @@
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <!--    The item view in the recycler view -->
@@ -15,13 +14,14 @@
 
         <ImageView
             android:id="@+id/rvItemHomeMain"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_200"
-            android:layout_margin="@dimen/dp_10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/dp_1"
+            android:src="@drawable/hubble"
             android:contentDescription="@string/home_cont_desc_rv_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:src="@drawable/hubble"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

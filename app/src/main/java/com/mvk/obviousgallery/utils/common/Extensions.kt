@@ -37,3 +37,7 @@ inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Fragmen
 fun  AppCompatActivity.addFragment(fragment: Fragment, container: Int, addToBackStack: String){
     supportFragmentManager.inTransaction { addToBackStack(null).add(container, fragment) }
 }
+
+fun Fragment.addFragment(fragment: Fragment, container: Int, addToBackStack: String){
+    parentFragmentManager.inTransaction { addToBackStack(null).add(container, fragment) }
+}

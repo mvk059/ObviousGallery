@@ -6,11 +6,11 @@
 package com.mvk.obviousgallery.ui.detail.adapter
 
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.mvk.obviousgallery.R
 import com.mvk.obviousgallery.data.model.ImageData
+import com.mvk.obviousgallery.data.remote.NetworkService
 import com.mvk.obviousgallery.databinding.ItemViewDetailBinding
+import com.mvk.obviousgallery.utils.common.FullScreenClickListener
 
 
 /**
@@ -24,25 +24,34 @@ class DetailViewHolder(var binding: ItemViewDetailBinding) : RecyclerView.ViewHo
      * Sets all the required information in their respective fields
      *
      * @param imageData Array of images
-     * @param position Position of the current item in the view pager
+     * @param viewPagerPosition Position of the current item in the view pager
      */
-    fun bindItems(imageData: ImageData, position: Int) {
-        Glide.with(itemView)
-            .load(imageData.image[position].url)
-            .transform(CenterCrop())
-            .placeholder(R.drawable.ic_placeholder)
-            .error(R.drawable.ic_error)
-            .fallback(R.drawable.ic_error)
-            .into(binding.detailMainIV)
+    fun bindItems(
+        imageData: ImageData,
+        viewPagerPosition: Int,
+        fullScreenClickListener: FullScreenClickListener
+    ) {
 
-        binding.detailTitleTV.text = imageData.image[position].title
+        NetworkService.fetchDetailScreenImage(
+            context = binding.detailTitleTV.context,
+            itemView = itemView,
+            imageData = imageData,
+            viewPagerPosition = viewPagerPosition,
+            detailFullScreenIV = binding.detailFullScreenIV,
+            detailMainIV = binding.detailMainIV
+        )
+        binding.detailTitleTV.text = imageData.image[viewPagerPosition].title
         val copyright = String.format(
             binding.detailCopyrightTV.context.resources.getString(R.string.detail_text_copyright),
-            imageData.image[position].copyright
+            imageData.image[viewPagerPosition].copyright
         )
         binding.detailCopyrightTV.text = copyright
-        binding.detailExplanationTV.text = imageData.image[position].explanation
-        binding.detailDateTV.text = imageData.image[position].date
+        binding.detailExplanationTV.text = imageData.image[viewPagerPosition].explanation
+        binding.detailDateTV.text = imageData.image[viewPagerPosition].date
+
+        binding.detailFullScreenIV.setOnClickListener {
+            fullScreenClickListener.onClick(viewPagerPosition)
+        }
 
     }
 

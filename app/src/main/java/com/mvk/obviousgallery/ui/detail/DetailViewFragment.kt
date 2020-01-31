@@ -17,16 +17,15 @@ import com.mvk.obviousgallery.R
 import com.mvk.obviousgallery.data.model.ImageData
 import com.mvk.obviousgallery.databinding.DetailViewMainBinding
 import com.mvk.obviousgallery.ui.detail.adapter.DetailViewAdapter
+import com.mvk.obviousgallery.ui.fullscreen.FullScreenFragment
 import com.mvk.obviousgallery.ui.main.viewmodel.MainViewModel
+import com.mvk.obviousgallery.utils.common.FullScreenClickListener
+import com.mvk.obviousgallery.utils.common.addFragment
 
 /**
  * Detail fragment to display all of the information for the selection image
  */
-class DetailViewFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = DetailViewFragment()
-    }
+class DetailViewFragment : Fragment(), FullScreenClickListener {
 
     /**
      * Binding with the layout file (detail_view_main.xml) to access it's elements
@@ -53,6 +52,15 @@ class DetailViewFragment : Fragment() {
         initObservers()
     }
 
+    override fun onClick(viewPagerPosition: Int) {
+        addFragment(
+            fragment = FullScreenFragment(),
+            container = android.R.id.content,
+            addToBackStack = DetailViewFragment::class.java.name
+        )
+        viewModel.passDataToFullScreenFragment(viewPagerPosition)
+    }
+
     /**
      * Initialize the view model
      */
@@ -67,7 +75,7 @@ class DetailViewFragment : Fragment() {
      * Initializes the required observers
      */
     private fun initObservers() {
-        viewModel.passDataLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.passDataToDetailScreenLD.observe(viewLifecycleOwner, Observer {
             initAdapter(viewModel.imageData)
         })
     }
@@ -77,7 +85,7 @@ class DetailViewFragment : Fragment() {
      * Navigating to the position of the selected image
      */
     private fun initAdapter(it: ImageData) {
-        binding.detailViewPager.adapter = DetailViewAdapter(it)
+        binding.detailViewPager.adapter = DetailViewAdapter(it, this)
         binding.detailViewPager.currentItem = it.position
     }
 }
