@@ -8,7 +8,7 @@ package com.mvk.obviousgallery.ui.detail.adapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mvk.obviousgallery.R
 import com.mvk.obviousgallery.data.model.ImageData
-import com.mvk.obviousgallery.data.remote.NetworkService
+import com.mvk.obviousgallery.data.repository.NetworkRepository
 import com.mvk.obviousgallery.databinding.ItemViewDetailBinding
 import com.mvk.obviousgallery.utils.common.FullScreenClickListener
 
@@ -25,20 +25,21 @@ class DetailViewHolder(var binding: ItemViewDetailBinding) : RecyclerView.ViewHo
      *
      * @param imageData Array of images
      * @param viewPagerPosition Position of the current item in the view pager
+     * @param repository Repository layer to make the network calls
      */
     fun bindItems(
         imageData: ImageData,
         viewPagerPosition: Int,
-        fullScreenClickListener: FullScreenClickListener
+        fullScreenClickListener: FullScreenClickListener,
+        repository: NetworkRepository
     ) {
 
-        NetworkService.fetchDetailScreenImage(
+        repository.fetchDetailScreenImage(
             context = binding.detailTitleTV.context,
-            itemView = itemView,
             imageData = imageData,
             viewPagerPosition = viewPagerPosition,
             detailFullScreenIV = binding.detailFullScreenIV,
-            detailMainIV = binding.detailMainIV
+            targetIV = binding.detailMainIV
         )
         binding.detailTitleTV.text = imageData.image[viewPagerPosition].title
         val copyright = String.format(

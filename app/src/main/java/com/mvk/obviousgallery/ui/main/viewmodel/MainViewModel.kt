@@ -13,7 +13,7 @@ import androidx.lifecycle.MutableLiveData
 import com.mvk.obviousgallery.data.datasource.GalleryDataSource
 import com.mvk.obviousgallery.data.model.Image
 import com.mvk.obviousgallery.data.model.ImageData
-import com.mvk.obviousgallery.data.remote.NetworkService
+import com.mvk.obviousgallery.data.repository.NetworkRepository
 
 /**
  * View model for MainActivity and DetailViewFragment
@@ -27,6 +27,10 @@ class MainViewModel(var app: Application) : AndroidViewModel(app) {
      * Stores the image data read from the JSON file
      */
     lateinit var imageData: ImageData
+    /**
+     * Repository layer to handle network communications
+     */
+    var repository: NetworkRepository = NetworkRepository()
     /**
      * Live data to communicate between main activity and detail fragment
      */
@@ -73,11 +77,11 @@ class MainViewModel(var app: Application) : AndroidViewModel(app) {
      * @param fullIV Image view of the downloaded image
      */
     fun setFullScreenImage(context: Context, fullIV: ImageView) {
-        NetworkService.fetchFullScreenImage(
+        repository.fetchFullScreenImage(
             context = context,
-            fullScreenIV = fullIV,
             imageData = imageData,
-            viewPagerPosition = viewPagerPosition
+            viewPagerPosition = viewPagerPosition,
+            fullScreenIV = fullIV
         )
     }
 }

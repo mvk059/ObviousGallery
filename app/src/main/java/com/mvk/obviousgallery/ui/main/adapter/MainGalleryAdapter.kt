@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mvk.obviousgallery.data.model.Image
+import com.mvk.obviousgallery.data.repository.NetworkRepository
 import com.mvk.obviousgallery.databinding.ItemViewHomeMainBinding
 import com.mvk.obviousgallery.utils.common.ImageClickListener
 
@@ -17,10 +18,12 @@ import com.mvk.obviousgallery.utils.common.ImageClickListener
  *
  * @param imageList List of images to display in the activity
  * @param imageClickListener Listener to handle clicks of the images
+ * @param repository Repository layer to make the network calls
  */
 class MainGalleryAdapter(
     var imageList: Array<Image>?,
-    var imageClickListener: ImageClickListener
+    var imageClickListener: ImageClickListener,
+    var repository: NetworkRepository
 ) : RecyclerView.Adapter<MainGalleryItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainGalleryItemViewHolder {
@@ -34,7 +37,7 @@ class MainGalleryAdapter(
     override fun onBindViewHolder(holder: MainGalleryItemViewHolder, position: Int) {
         imageList?.let {
             if (it.isNotEmpty()) {
-                holder.bindItems(it, position, imageClickListener)
+                holder.bindItems(it, position, imageClickListener, repository)
             }
         }
     }

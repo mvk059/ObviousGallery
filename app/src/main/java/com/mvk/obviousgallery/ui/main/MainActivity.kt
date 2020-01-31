@@ -67,7 +67,10 @@ class MainActivity : AppCompatActivity(), ImageClickListener {
      */
     private fun setAdapter() {
         val array = viewModel.getData()
-        val galleryAdapter = MainGalleryAdapter(imageList = array, imageClickListener = this)
+        val galleryAdapter = MainGalleryAdapter(
+            imageList = array,
+            imageClickListener = this,
+            repository = viewModel.repository)
         binding.rvMain.apply {
             layoutManager = GridLayoutManager(context, Constants.GRID_SIZE)
             adapter = galleryAdapter

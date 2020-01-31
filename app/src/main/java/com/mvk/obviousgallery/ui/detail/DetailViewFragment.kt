@@ -85,7 +85,11 @@ class DetailViewFragment : Fragment(), FullScreenClickListener {
      * Navigating to the position of the selected image
      */
     private fun initAdapter(it: ImageData) {
-        binding.detailViewPager.adapter = DetailViewAdapter(it, this)
+        binding.detailViewPager.adapter = DetailViewAdapter(
+            it,
+            this,
+            viewModel.repository
+        )
         binding.detailViewPager.currentItem = it.position
     }
 }

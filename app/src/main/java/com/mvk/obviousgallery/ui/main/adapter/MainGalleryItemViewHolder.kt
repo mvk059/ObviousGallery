@@ -6,10 +6,9 @@
 package com.mvk.obviousgallery.ui.main.adapter
 
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.mvk.obviousgallery.R
 import com.mvk.obviousgallery.data.model.Image
 import com.mvk.obviousgallery.data.model.ImageData
+import com.mvk.obviousgallery.data.repository.NetworkRepository
 import com.mvk.obviousgallery.databinding.ItemViewHomeMainBinding
 import com.mvk.obviousgallery.utils.common.ImageClickListener
 
@@ -27,20 +26,21 @@ class MainGalleryItemViewHolder(var binding: ItemViewHomeMainBinding) :
      * @param images List of images to show
      * @param position Position of the current loading image
      * @param imageClickListener Listener to handle clicks on each button
+     * @param repository Repository layer to make the network calls
      */
     fun bindItems(
         images: Array<Image>,
         position: Int,
-        imageClickListener: ImageClickListener
+        imageClickListener: ImageClickListener,
+        repository: NetworkRepository
     ) {
 
-        Glide.with(itemView)
-            .load(images[position].url)
-            .centerCrop()
-            .placeholder(R.drawable.ic_placeholder)
-            .error(R.drawable.ic_error)
-            .fallback(R.drawable.ic_error)
-            .into(binding.rvItemHomeMain)
+        repository.fetchMainScreenImage(
+            context = binding.rvItemHomeMain.context,
+            imageData = ImageData(images, position),
+            viewPagerPosition = position,
+            targetIV = binding.rvItemHomeMain
+        )
 
         binding.rvItemHomeMain.setOnClickListener {
             imageClickListener.onClick(ImageData(images, position))

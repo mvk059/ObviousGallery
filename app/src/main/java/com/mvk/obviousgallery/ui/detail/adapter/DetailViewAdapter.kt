@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mvk.obviousgallery.data.model.ImageData
+import com.mvk.obviousgallery.data.repository.NetworkRepository
 import com.mvk.obviousgallery.databinding.ItemViewDetailBinding
 import com.mvk.obviousgallery.utils.common.FullScreenClickListener
 
@@ -16,10 +17,13 @@ import com.mvk.obviousgallery.utils.common.FullScreenClickListener
  * Recycler view adapter for the main screen listing.
  *
  * @param imageData List of images to display in the fragment
+ * @param fullScreenClickListener Listener to handle image click
+ * @param repository Repository layer to make the network calls
  */
 class DetailViewAdapter(
     var imageData: ImageData,
-    var fullScreenClickListener: FullScreenClickListener
+    var fullScreenClickListener: FullScreenClickListener,
+    var repository: NetworkRepository
 ) : RecyclerView.Adapter<DetailViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
@@ -31,6 +35,6 @@ class DetailViewAdapter(
     override fun getItemCount(): Int = imageData.image.size
 
     override fun onBindViewHolder(holder: DetailViewHolder, position: Int) {
-        holder.bindItems(imageData, position, fullScreenClickListener)
+        holder.bindItems(imageData, position, fullScreenClickListener, repository)
     }
 }
