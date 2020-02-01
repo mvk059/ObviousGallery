@@ -21,11 +21,12 @@
 
             <ImageView
                 android:id="@+id/detailMainIV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="@dimen/dp_0"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/main_cont_desc_icon"
+                android:contentDescription="@string/detail_cont_desc_icon"
                 app:layout_constraintBottom_toTopOf="@+id/detailGuideline"
+                app:layout_constraintDimensionRatio="H,3:3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -36,6 +37,7 @@
                 android:layout_width="@dimen/dp_20"
                 android:layout_height="@dimen/dp_20"
                 android:layout_margin="@dimen/dp_10"
+                android:contentDescription="@string/detail_cont_desc_full_icon"
                 android:src="@drawable/ic_full"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/detailGuideline"

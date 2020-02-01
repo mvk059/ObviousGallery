@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.mvk.obviousgallery.R
@@ -45,10 +46,13 @@ object NetworkService {
         placeholderImage: Int = R.drawable.ic_placeholder,
         errorImage: Int = R.drawable.ic_error
     ) {
+        val crop =
+            if (sourceType == Constants.SOURCE_FULL_SCREEN ) FitCenter()
+            else CenterCrop()
         // Load images with Glide
         Glide.with(context)
             .load(url)
-            .transform(CenterCrop())
+            .transform(crop)
             .placeholder(placeholderImage)
             .error(errorImage)
             .listener(object : RequestListener<Drawable> {

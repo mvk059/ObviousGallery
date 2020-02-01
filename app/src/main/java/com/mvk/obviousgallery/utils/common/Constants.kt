@@ -17,5 +17,5 @@ object Constants {
      */
     const val SOURCE_MAIN_SCREEN    = 1001
     const val SOURCE_DETAIL_SCREEN  = 1002
-    const val SOURCE_FULL_SCREEN    = 1002
+    const val SOURCE_FULL_SCREEN    = 1003
 }
