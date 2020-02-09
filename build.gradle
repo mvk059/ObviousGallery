@@ -46,13 +46,6 @@ ext {
     // Lifecycle
     lifecycle_version = '2.2.0'
 
-    // Reactive
-    rxjava_version = '2.2.3'
-    rxandroid_version = '2.1.1'
-
-    // Networking
-    okhttp_version = '3.11.0'
-
     // Parser
     gson_version = '2.8.5'
 
@@ -62,10 +55,4 @@ ext {
 
     // Tests
     junit_version = '4.12'
-    espresso_version = '3.1.0'
-    mockito_version = '2.19.0'
-    core_testing_version = '1.1.1'
-    test_runner_version = '1.1.1'
-    test_ext_runner_version = '1.1.0'
-    hamcrest_version = '2.1'
 }
