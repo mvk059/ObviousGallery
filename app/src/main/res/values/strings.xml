@@ -4,8 +4,7 @@
     <string name="detail_cont_desc_icon">Icon in detail screen</string>
     <string name="detail_cont_desc_full_icon">Icon in detail screen for full screen</string>
     <string name="error_text_file_not_found">File not found</string>
-    <string name="full_screen_cont_desc_full_screen_icon">Image in full screen</string>
-    <string name="detail_cont_desc_main_icon">Image in full screen</string>
+    <string name="full_screen_cont_desc_icon">Image in full screen</string>
     <string name="home_cont_desc_rv_icon">Icon in main gallery screen</string>
     <string name="tools_text_detail_copyright">Copyright: ESA/HubbleNASA</string>
     <string name="tools_text_detail_date">"2019&#8211;12&#8211;01"</string>

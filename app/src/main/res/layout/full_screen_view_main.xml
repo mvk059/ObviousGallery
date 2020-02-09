@@ -1,30 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Created by Manpreet Kunnath on 31/1/2020 12:39
   ~ Copyright (c) 2020 . All rights reserved.
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="fullScreenVM"
             type="com.mvk.obviousgallery.ui.main.viewmodel.MainViewModel" />
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true">
         <ImageView
             android:id="@+id/fullIV"
-            android:background="@color/black"
-            tools:src="@drawable/hubble"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@string/full_screen_cont_desc_icon"/>
+            android:background="@color/black"
+            android:contentDescription="@string/full_screen_cont_desc_icon"
+            tools:src="@drawable/hubble" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

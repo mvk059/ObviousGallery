@@ -20,7 +20,7 @@ import com.mvk.obviousgallery.ui.detail.adapter.DetailViewAdapter
 import com.mvk.obviousgallery.ui.fullscreen.FullScreenFragment
 import com.mvk.obviousgallery.ui.main.viewmodel.MainViewModel
 import com.mvk.obviousgallery.utils.common.FullScreenClickListener
-import com.mvk.obviousgallery.utils.common.addFragment
+import com.mvk.obviousgallery.utils.common.replaceFragment
 
 /**
  * Detail fragment to display all of the information for the selection image
@@ -49,14 +49,14 @@ class DetailViewFragment : Fragment(), FullScreenClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
         initObservers()
     }
 
     override fun onClick(viewPagerPosition: Int) {
-        addFragment(
+        replaceFragment(
             fragment = FullScreenFragment(),
-            container = android.R.id.content,
-            addToBackStack = DetailViewFragment::class.java.name
+            container = android.R.id.content
         )
         viewModel.passDataToFullScreenFragment(viewPagerPosition)
     }
@@ -90,6 +90,7 @@ class DetailViewFragment : Fragment(), FullScreenClickListener {
             this,
             viewModel.repository
         )
-        binding.detailViewPager.currentItem = it.position
+        binding.detailViewPager.setCurrentItem(it.position, false)
+
     }
 }

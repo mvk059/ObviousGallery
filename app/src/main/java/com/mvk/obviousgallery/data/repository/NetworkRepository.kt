@@ -83,7 +83,7 @@ class NetworkRepository {
 
         NetworkService.callGlideService(
             context = context,
-            url = imageData.image[viewPagerPosition].hdurl,
+            url = imageData.image[viewPagerPosition].url,
             sourceType = Constants.SOURCE_FULL_SCREEN,
             target = fullScreenIV
         )

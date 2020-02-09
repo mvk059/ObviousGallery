@@ -48,8 +48,7 @@ class MainActivity : AppCompatActivity(), ImageClickListener {
     override fun onClick(imageData: ImageData) {
         addFragment(
             fragment = DetailViewFragment(),
-            container = android.R.id.content,
-            addToBackStack = MainActivity::class.java.name
+            container = android.R.id.content
         )
         viewModel.passDataToDetailFragment(imageData = imageData)
     }

@@ -32,12 +32,31 @@ inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Fragmen
 }
 
 /**
- * Calls the inTransaction method and adds the fragment to back stack
+ * Calls the inTransaction method and loads the fragment. Called from an Activity
+ *
+ * @param fragment Fragment to be added
+ * @param container Place to be added
  */
-fun  AppCompatActivity.addFragment(fragment: Fragment, container: Int, addToBackStack: String){
+fun  AppCompatActivity.addFragment(fragment: Fragment, container: Int){
     supportFragmentManager.inTransaction { addToBackStack(null).add(container, fragment) }
 }
 
-fun Fragment.addFragment(fragment: Fragment, container: Int, addToBackStack: String){
+/**
+ * Calls the inTransaction method and loads the fragment. Called from an Fragment
+ *
+ * @param fragment Fragment to be added
+ * @param container Place to be added
+ */
+fun Fragment.addFragment(fragment: Fragment, container: Int){
     parentFragmentManager.inTransaction { addToBackStack(null).add(container, fragment) }
+}
+
+/**
+ * Calls the inTransaction method and loads the fragment. Called from an Fragment
+ *
+ * @param fragment Fragment to be added
+ * @param container Place to be added
+ */
+fun Fragment.replaceFragment(fragment: Fragment, container: Int){
+    parentFragmentManager.inTransaction { addToBackStack(null).replace(container, fragment) }
 }
